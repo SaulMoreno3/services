@@ -1,0 +1,293 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+
+const meta = {
+  title: 'Servicios — Saúl Moreno',
+  description: 'Docencia técnica, automatización/DevOps, mantenimiento de servidores y desarrollo de aplicaciones.'
+};
+
+// Áreas de servicio principales
+const serviceAreas = [
+  {
+    title: 'Docencia en centros',
+    description: 'Formación técnica especializada en formación reglada de Grado Superior (DAM/DAW/ASIR), estudios propios e INAEM, y formación in-company.',
+    features: [
+      'Formación reglada de Grado Superior',
+      'Módulos 0483 y 0484 específicamente',
+      'Estudios propios universitarios',
+      'Programas INAEM oficiales',
+      'Formación in-company',
+      'Preparación para certificaciones'
+    ],
+    price: 'Desde 30 €/h',
+    icon: 'teaching'
+  },
+  {
+    title: 'Automatización/DevOps',
+    description: 'Implementación de CI/CD, infraestructura como código y observabilidad para optimizar y automatizar el ciclo de desarrollo.',
+    features: [
+      'CI/CD pipelines automatizados',
+      'Infraestructura como código (IaC)',
+      'Containerización y orquestación',
+      'Monitorización y observabilidad',
+      'Despliegues automáticos',
+      'Scripts de automatización'
+    ],
+    price: 'Desde 300 € / sprint',
+    icon: 'deployment'
+  },
+  {
+    title: 'Mantenimiento de servidores',
+    description: 'Administración, hardening y mantenimiento de servidores Linux, gestión de contenedores, backups automatizados y seguridad.',
+    features: [
+      'Administración Linux avanzada',
+      'Contenedores Docker y Kubernetes',
+      'Backups automatizados y DR',
+      'Hardening y seguridad',
+      'Monitorización 24/7',
+      'Soporte técnico continuado'
+    ],
+    price: 'Desde 60 € / mes',
+    icon: 'data'
+  },
+  {
+    title: 'Desarrollo de aplicaciones',
+    description: 'Desarrollo backend, APIs REST, data engineering y arquitecturas escalables usando tecnologías modernas y mejores prácticas.',
+    features: [
+      'APIs REST y GraphQL',
+      'Desarrollo backend robusto',
+      'Data engineering y ETL',
+      'Arquitecturas de microservicios',
+      'Bases de datos y optimización',
+      'Testing automatizado'
+    ],
+    price: 'Desde 600 € (MVP)',
+    icon: 'web'
+  }
+];
+
+// Proceso de trabajo
+const workProcess = [
+  {
+    step: '01',
+    title: 'Descubrimiento',
+    description: 'Análisis de necesidades, objetivos y requerimientos técnicos específicos.',
+    duration: 'Consulta gratuita'
+  },
+  {
+    step: '02',
+    title: 'Propuesta',
+    description: 'Elaboración de propuesta detallada con alcance, metodología y cronograma.',
+    duration: '1-2 días'
+  },
+  {
+    step: '03',
+    title: 'Implementación',
+    description: 'Desarrollo o formación con comunicación constante y entregas incrementales.',
+    duration: 'Según proyecto'
+  },
+  {
+    step: '04',
+    title: 'Entrega/Soporte',
+    description: 'Entrega final con documentación completa y soporte post-implementación.',
+    duration: 'Ongoing'
+  }
+];
+---
+
+<Base title={meta.title} description={meta.description}>
+  <Header />
+  
+  <!-- Hero Section -->
+  <section class="py-16 bg-gradient-to-r from-primary-50 to-blue-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold text-gray-900 sm:text-5xl lg:text-6xl">
+          Servicios Profesionales
+        </h1>
+        <p class="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
+          Combino experiencia técnica en automatización y desarrollo con pasión por la enseñanza,
+          ofreciendo formación de calidad y soluciones tecnológicas robustas.
+        </p>
+        <div class="mt-8">
+          <a 
+            href="/web-revolut/tarifas/" 
+            class="inline-flex items-center gap-2 px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 font-medium"
+          >
+            Ver tarifas y contacto
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Areas -->
+  <section class="py-16" aria-labelledby="service-areas">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 id="service-areas" class="text-3xl font-bold text-gray-900 mb-4">
+          Áreas de Servicio
+        </h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Ofrezco soluciones integrales que combinan formación técnica de calidad con 
+          desarrollo y mantenimiento de sistemas robustos.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {serviceAreas.map((service) => (
+          <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-200 hover:border-primary-300 group">
+            <!-- Icon -->
+            <div class="mb-4">
+              <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center group-hover:bg-primary-200 transition-colors">
+                <svg 
+                  class="w-6 h-6 text-primary-600"
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  {service.icon === 'teaching' && (
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                  )}
+                  {service.icon === 'deployment' && (
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                  )}
+                  {service.icon === 'data' && (
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                  )}
+                  {service.icon === 'web' && (
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                  )}
+                </svg>
+              </div>
+            </div>
+            
+            <!-- Title and Price -->
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
+                {service.title}
+              </h3>
+              <span class="bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ml-4">
+                {service.price}
+              </span>
+            </div>
+            
+            <!-- Description -->
+            <p class="text-gray-600 mb-4 leading-relaxed">
+              {service.description}
+            </p>
+            
+            <!-- Features -->
+            <ul class="space-y-2 mb-6" role="list">
+              {service.features.map((feature) => (
+                <li class="flex items-start gap-2 text-sm text-gray-600">
+                  <svg 
+                    class="w-4 h-4 text-primary-500 mt-0.5 flex-shrink-0" 
+                    fill="currentColor" 
+                    viewBox="0 0 20 20"
+                    aria-hidden="true"
+                  >
+                    <path 
+                      fill-rule="evenodd" 
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" 
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+            
+            <!-- CTA Button -->
+            <div class="text-center">
+              <a 
+                href="/web-revolut/tarifas/" 
+                class="inline-flex items-center justify-center w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 font-medium"
+              >
+                Solicitar presupuesto
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Process -->
+  <section class="py-16 bg-gray-50" aria-labelledby="work-process">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 id="work-process" class="text-3xl font-bold text-gray-900 mb-4">
+          Proceso de Trabajo
+        </h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Un proceso claro y transparente para garantizar los mejores resultados
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {workProcess.map((step, index) => (
+          <div class="text-center relative">
+            <!-- Step Number -->
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
+              <span class="text-xl font-bold text-primary-600">{step.step}</span>
+              {index < workProcess.length - 1 && (
+                <div class="hidden lg:block absolute top-1/2 left-full w-8 h-0.5 bg-gray-300 transform -translate-y-1/2" aria-hidden="true"></div>
+              )}
+            </div>
+            
+            <!-- Content -->
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              {step.title}
+            </h3>
+            <p class="text-gray-600 text-sm mb-2 leading-relaxed">
+              {step.description}
+            </p>
+            <span class="text-primary-600 font-medium text-sm">
+              {step.duration}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200 text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          ¿Listo para empezar?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          Cuéntame qué necesitas y diseñaremos juntos la solución perfecta para ti.
+          Consulta inicial gratuita y presupuesto personalizado.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="/web-revolut/tarifas/" 
+            class="inline-flex items-center justify-center px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 font-medium"
+          >
+            Ver tarifas y contactar
+          </a>
+          <a 
+            href="/web-revolut/proyectos/" 
+            class="inline-flex items-center justify-center px-8 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 font-medium"
+          >
+            Ver proyectos
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Base>

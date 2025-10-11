@@ -1,0 +1,397 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const meta = {
+  title: 'Tarifas — Saúl Moreno',
+  description: 'Tarifas orientativas y contacto para presupuestos de formación, automatización, mantenimiento y desarrollo.'
+};
+
+// Tarifas orientativas (precios rebajados ~15%)
+const pricingTiers = [
+  {
+    title: 'Formación reglada Grado Superior',
+    price: 'Desde 30 €/h',
+    description: 'Módulos específicos en ciclos DAM/DAW/ASIR',
+    included: [
+      'Preparación de clases personalizadas',
+      'Material didáctico incluido',
+      'Seguimiento del progreso',
+      'Preparación para exámenes',
+      'Soporte entre clases'
+    ],
+    notIncluded: [
+      'Material bibliográfico oficial',
+      'Licencias de software específico',
+      'Certificaciones externas'
+    ]
+  },
+  {
+    title: 'Formación empresas / estudios propios / INAEM',
+    price: 'Desde 40 €/h',
+    description: 'Programas de formación para el empleo y empresas',
+    included: [
+      'Diseño curricular adaptado',
+      'Metodología práctica',
+      'Proyectos reales',
+      'Certificado de participación',
+      'Evaluación continua'
+    ],
+    notIncluded: [
+      'Plataforma LMS externa',
+      'Certificaciones oficiales',
+      'Hardware específico'
+    ]
+  },
+  {
+    title: 'Automatización/DevOps (sprint)',
+    price: 'Desde 300 € / sprint',
+    description: 'Implementación de CI/CD y automatización',
+    included: [
+      'Análisis de infraestructura actual',
+      'Configuración de pipelines',
+      'Documentación técnica',
+      'Transferencia de conocimiento',
+      'Soporte post-implementación'
+    ],
+    notIncluded: [
+      'Licencias de herramientas premium',
+      'Infraestructura cloud',
+      'Certificados SSL externos'
+    ]
+  },
+  {
+    title: 'Mantenimiento de servidores',
+    price: 'Desde 60 € / mes',
+    description: 'Administración y mantenimiento continuado',
+    included: [
+      'Monitorización 24/7',
+      'Actualizaciones de seguridad',
+      'Backups automatizados',
+      'Soporte técnico',
+      'Informes mensuales'
+    ],
+    notIncluded: [
+      'Hardware físico',
+      'Licencias de SO/software',
+      'Ancho de banda adicional'
+    ]
+  },
+  {
+    title: 'Desarrollo de aplicaciones (MVP)',
+    price: 'Desde 600 €',
+    description: 'Desarrollo de producto mínimo viable',
+    included: [
+      'Análisis de requerimientos',
+      'Desarrollo backend/frontend',
+      'Base de datos',
+      'Testing básico',
+      'Documentación técnica'
+    ],
+    notIncluded: [
+      'Hosting/dominio',
+      'Diseño gráfico avanzado',
+      'Integraciones premium'
+    ]
+  }
+];
+---
+
+<Base title={meta.title} description={meta.description}>
+  <Header />
+  
+  <!-- Hero Section -->
+  <section class="py-16 bg-gradient-to-r from-primary-50 to-blue-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold text-gray-900 sm:text-5xl lg:text-6xl">
+          Tarifas Orientativas
+        </h1>
+        <p class="mt-6 text-xl text-gray-600 max-w-4xl mx-auto">
+          <strong>Tarifas orientativas. Presupuesto según alcance. Contacto obligatorio.</strong><br>
+          Cada proyecto es único y merece una propuesta personalizada. Los precios mostrados son referencias base
+          que se ajustan según los requerimientos específicos de cada cliente.
+        </p>
+        <div class="mt-8 bg-white/80 backdrop-blur-sm rounded-lg p-4 inline-block">
+          <p class="text-gray-700 font-medium">
+            📞 Consulta inicial gratuita • 💬 Respuesta en 24h • 📋 Presupuesto sin compromiso
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Table -->
+  <section class="py-16" aria-labelledby="pricing-table">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 id="pricing-table" class="text-3xl font-bold text-gray-900 mb-4">
+          Servicios y Precios
+        </h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Precios base orientativos que se personalizan según el alcance específico de cada proyecto
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {pricingTiers.map((tier, index) => (
+          <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-200 hover:border-primary-300 relative">
+            {index === 0 && (
+              <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <span class="bg-primary-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+                  Más solicitado
+                </span>
+              </div>
+            )}
+            
+            <div class="text-center mb-6">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">{tier.title}</h3>
+              <div class="text-3xl font-bold text-primary-600 mb-2">{tier.price}</div>
+              <p class="text-gray-600 text-sm">{tier.description}</p>
+            </div>
+            
+            <!-- Included -->
+            <div class="mb-6">
+              <h4 class="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Incluido
+              </h4>
+              <ul class="space-y-2">
+                {tier.included.map((item) => (
+                  <li class="flex items-start gap-2 text-sm text-gray-600">
+                    <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <!-- Not Included -->
+            <div class="mb-6">
+              <h4 class="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                No incluye
+              </h4>
+              <ul class="space-y-2">
+                {tier.notIncluded.map((item) => (
+                  <li class="flex items-start gap-2 text-sm text-gray-500">
+                    <svg class="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <!-- CTA Button -->
+            <div class="text-center">
+              <a 
+                href="#contact-form" 
+                class="inline-flex items-center justify-center w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 font-medium"
+              >
+                Solicitar propuesta
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership Section -->
+  <section class="py-16 bg-gray-50" aria-labelledby="membership">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+        <div class="text-center mb-8">
+          <h2 id="membership" class="text-3xl font-bold text-gray-900 mb-4">
+            Membresía de Proyectos
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Acceso completo a proyectos desarrollados, código fuente, documentación técnica, 
+            soporte continuado y actualizaciones. Ideal para aprender y adaptar soluciones existentes.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="text-center">
+            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">Código completo</h3>
+            <p class="text-gray-600 text-sm">Acceso al código fuente completo con comentarios y documentación</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">Soporte incluido</h3>
+            <p class="text-gray-600 text-sm">Soporte técnico para implementación y dudas sobre los proyectos</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">Actualizaciones</h3>
+            <p class="text-gray-600 text-sm">Acceso a nuevas versiones y mejoras de los proyectos</p>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <a 
+            href="/web-revolut/proyectos/" 
+            class="inline-flex items-center gap-2 px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 font-medium"
+          >
+            Ver proyectos disponibles
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="py-16" aria-labelledby="contact-form">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 id="contact-form" class="text-3xl font-bold text-gray-900 mb-4">
+          Solicitar Presupuesto
+        </h2>
+        <p class="text-lg text-gray-600">
+          Cuéntame sobre tu proyecto y te enviaré una propuesta personalizada
+        </p>
+      </div>
+      
+      <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+        <form method="GET" action="mailto:saul.moreno@ejemplo.com" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Name -->
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                Nombre completo *
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                placeholder="Tu nombre"
+              />
+            </div>
+            
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                Email *
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                placeholder="tu@email.com"
+              />
+            </div>
+          </div>
+          
+          <!-- Subject -->
+          <div>
+            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
+              Tipo de servicio *
+            </label>
+            <select
+              id="subject"
+              name="subject"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+            >
+              <option value="">Selecciona un servicio</option>
+              <option value="Formación reglada Grado Superior">Formación reglada Grado Superior</option>
+              <option value="Formación empresas/INAEM">Formación empresas/INAEM</option>
+              <option value="Automatización/DevOps">Automatización/DevOps</option>
+              <option value="Mantenimiento servidores">Mantenimiento servidores</option>
+              <option value="Desarrollo aplicaciones">Desarrollo aplicaciones</option>
+              <option value="Consultoría técnica">Consultoría técnica</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          
+          <!-- Message -->
+          <div>
+            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+              Descripción del proyecto *
+            </label>
+            <textarea
+              id="message"
+              name="body"
+              rows="5"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-none"
+              placeholder="Cuéntame sobre tu proyecto: objetivos, tecnologías, plazos, presupuesto orientativo..."
+            ></textarea>
+          </div>
+          
+          <!-- Legal Notice -->
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <p class="text-xs text-gray-600 leading-relaxed">
+              <strong>Información sobre tratamiento de datos:</strong><br>
+              <strong>Responsable:</strong> Saúl Moreno Mancebón<br>
+              <strong>Finalidad:</strong> Responder a consultas y envío de presupuestos<br>
+              <strong>Derechos:</strong> Acceso, rectificación, supresión y otros derechos detallados en la información adicional<br>
+              Al enviar este formulario consientes el tratamiento de tus datos para la finalidad indicada.
+            </p>
+          </div>
+          
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button
+              type="submit"
+              class="inline-flex items-center justify-center px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 font-medium"
+            >
+              Enviar solicitud
+            </button>
+            <p class="mt-3 text-sm text-gray-500">
+              Te responderé en un máximo de 24 horas
+            </p>
+          </div>
+        </form>
+        
+        <!-- Alternative Contact -->
+        <div class="mt-8 pt-8 border-t border-gray-200 text-center">
+          <p class="text-gray-600 mb-4">¿Prefieres contactar directamente?</p>
+          <a
+            href="mailto:saul.moreno@ejemplo.com"
+            class="inline-flex items-center gap-2 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 font-medium"
+          >
+            <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+            </svg>
+            saul.moreno@ejemplo.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
