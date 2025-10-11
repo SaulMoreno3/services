@@ -1,0 +1,35 @@
+<!-- OpenGraph placeholder image -->
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Profile circle -->
+  <circle cx="300" cy="315" r="80" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="3"/>
+  <text x="300" y="330" fill="white" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle">SP</text>
+  
+  <!-- Main text -->
+  <text x="450" y="280" fill="white" font-family="Arial, sans-serif" font-size="42" font-weight="bold">Saúl Preda</text>
+  <text x="450" y="330" fill="rgba(255,255,255,0.9)" font-family="Arial, sans-serif" font-size="24">Desarrollo & Docencia</text>
+  <text x="450" y="370" fill="rgba(255,255,255,0.8)" font-family="Arial, sans-serif" font-size="18">Aplicaciones a medida, data engineering y formación FP</text>
+  
+  <!-- Tech stack icons (simplified) -->
+  <rect x="450" y="400" width="40" height="40" fill="rgba(255,255,255,0.2)" rx="8"/>
+  <text x="470" y="426" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">JAVA</text>
+  
+  <rect x="500" y="400" width="40" height="40" fill="rgba(255,255,255,0.2)" rx="8"/>
+  <text x="520" y="426" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">JS</text>
+  
+  <rect x="550" y="400" width="40" height="40" fill="rgba(255,255,255,0.2)" rx="8"/>
+  <text x="570" y="426" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">PY</text>
+  
+  <rect x="600" y="400" width="40" height="40" fill="rgba(255,255,255,0.2)" rx="8"/>
+  <text x="620" y="426" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">SQL</text>
+  
+  <!-- Location -->
+  <text x="450" y="480" fill="rgba(255,255,255,0.7)" font-family="Arial, sans-serif" font-size="16">📍 Zaragoza, España</text>
+</svg>
