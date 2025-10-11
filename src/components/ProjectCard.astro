@@ -1,0 +1,125 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  features: string[];
+  stack: string[];
+  category: string;
+  demoUrl?: string;
+  membershipUrl?: string;
+  status: 'completed' | 'in-progress' | 'planned';
+}
+
+const { 
+  title, 
+  description, 
+  features,
+  stack,
+  category,
+  demoUrl,
+  membershipUrl,
+  status 
+} = Astro.props;
+
+const statusConfig = {
+  completed: { label: 'Disponible', color: 'bg-green-100 text-green-800' },
+  'in-progress': { label: 'En desarrollo', color: 'bg-yellow-100 text-yellow-800' },
+  planned: { label: 'Planificado', color: 'bg-gray-100 text-gray-800' }
+};
+
+const categoryIcons = {
+  'Automatización': '⚙️',
+  'DevOps': '🚀',
+  'Backend': '💻',
+  'Sistemas': '🖥️',
+  'Web': '🌐',
+  'API': '🔌'
+};
+---
+
+<article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-primary-300 group h-full flex flex-col">
+  <!-- Header with Icon and Status -->
+  <div class="p-6 border-b border-gray-100">
+    <div class="flex items-start justify-between mb-3">
+      <div class="flex items-center gap-3">
+        <div class="text-3xl">{categoryIcons[category] || '📦'}</div>
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
+            {title}
+          </h3>
+          <div class="text-sm text-gray-500">{category}</div>
+        </div>
+      </div>
+      <span class={`px-2 py-1 text-xs font-medium rounded-full ${statusConfig[status].color}`}>
+        {statusConfig[status].label}
+      </span>
+    </div>
+    
+    <!-- Description -->
+    <p class="text-gray-600 leading-relaxed">
+      {description}
+    </p>
+  </div>
+  
+  <!-- Content -->
+  <div class="p-6 flex-1 flex flex-col">
+    <!-- Features -->
+    <div class="mb-4">
+      <h4 class="font-semibold text-gray-900 mb-2 text-sm">Características principales:</h4>
+      <ul class="space-y-1">
+        {features.slice(0, 4).map((feature) => (
+          <li class="text-sm text-gray-600 flex items-start gap-2">
+            <svg class="w-4 h-4 text-primary-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            {feature}
+          </li>
+        ))}
+      </ul>
+    </div>
+    
+    <!-- Tech Stack -->
+    <div class="mb-6">
+      <h4 class="font-semibold text-gray-900 mb-2 text-sm">Stack tecnológico:</h4>
+      <div class="flex flex-wrap gap-1">
+        {stack.map((tech) => (
+          <span class="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-md">
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Links -->
+    <div class="flex gap-3 mt-auto">
+      {demoUrl && (
+        <a
+          href={demoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 text-sm font-medium flex-1 justify-center"
+          aria-label={`Ver demo del proyecto ${title}`}
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+          </svg>
+          Ver demo
+        </a>
+      )}
+      {membershipUrl && (
+        <a
+          href={membershipUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-300 focus:ring-offset-2 text-sm font-medium flex-1 justify-center"
+          aria-label={`Unirse a la membresía del proyecto ${title}`}
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
+          Membresía
+        </a>
+      )}
+    </div>
+  </div>
+</article>

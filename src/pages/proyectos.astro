@@ -1,0 +1,378 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+// Proyectos completos organizados por categorías
+const projects = [
+  {
+    title: 'Plataforma de Automatización DevOps',
+    description: 'Sistema completo de CI/CD para startup tecnológica con microservicios. Incluye monitoring avanzado, escalado automático y gestión de recursos cloud.',
+    features: [
+      'Infrastructure as Code con Terraform',
+      'Pipeline CI/CD con testing automatizado',
+      'Monitorización con Prometheus y Grafana',
+      'Auto-scaling y gestión de recursos',
+      'Backup automatizado multi-región',
+      'Security scanning integrado'
+    ],
+    stack: ['Docker', 'Kubernetes', 'GitLab CI', 'Terraform', 'AWS', 'Prometheus'],
+    category: 'DevOps',
+    status: 'completed' as const,
+    demoUrl: 'https://demo.devops-platform.com',
+    membershipUrl: '/web-revolut/tarifas/#membresia-proyectos'
+  },
+  {
+    title: 'API REST para Gestión de Inventarios',
+    description: 'Backend escalable para sistema de inventarios de empresa logística. Maneja más de 10,000 transacciones diarias con alta disponibilidad.',
+    features: [
+      'API RESTful con documentación OpenAPI',
+      'Caché distribuido con Redis',
+      'Testing comprehensivo (95% coverage)',
+      'Optimización de consultas SQL',
+      'Rate limiting y autenticación JWT',
+      'Logging estructurado y métricas'
+    ],
+    stack: ['Node.js', 'Express', 'PostgreSQL', 'Redis', 'Docker', 'Jest'],
+    category: 'Backend',
+    status: 'completed' as const,
+    demoUrl: 'https://api.inventory-system.com/docs',
+    membershipUrl: '/web-revolut/tarifas/#membresia-proyectos'
+  },
+  {
+    title: 'Sistema de Monitorización de Servidores',
+    description: 'Dashboard personalizado para monitorización de infraestructura empresarial. Reduce el downtime no planificado en un 60%.',
+    features: [
+      'Alertas en tiempo real vía Slack/Email',
+      'Dashboard responsive con métricas clave',
+      'Recolección de datos con agentes Python',
+      'Históricos y análisis de tendencias',
+      'Detección de anomalías con ML',
+      'Integración con múltiples proveedores cloud'
+    ],
+    stack: ['Python', 'FastAPI', 'React', 'InfluxDB', 'Grafana', 'TensorFlow'],
+    category: 'Sistemas',
+    status: 'completed' as const,
+    demoUrl: 'https://monitoring.demo.com',
+    membershipUrl: '/web-revolut/tarifas/#membresia-proyectos'
+  },
+  {
+    title: 'Automatización de Procesos Académicos',
+    description: 'Scripts Python para automatizar tareas administrativas en centro de formación. Ahorra 20 horas semanales de trabajo manual.',
+    features: [
+      'Generación automática de informes',
+      'Sincronización de datos entre sistemas',
+      'Notificaciones automáticas a estudiantes',
+      'Backup automatizado de calificaciones',
+      'Integración con sistemas LMS',
+      'Dashboard de métricas académicas'
+    ],
+    stack: ['Python', 'Pandas', 'Selenium', 'SQLite', 'Cron', 'Moodle API'],
+    category: 'Automatización',
+    status: 'completed' as const,
+    membershipUrl: '/web-revolut/tarifas/#membresia-proyectos'
+  },
+  {
+    title: 'Portal de Cursos Online',
+    description: 'Plataforma educativa con gestión de contenidos y seguimiento de progreso. Sirve a más de 500 estudiantes activos mensualmente.',
+    features: [
+      'Sistema de autenticación y roles',
+      'Seguimiento de progreso personalizado',
+      'Integración con sistemas de pago',
+      'Dashboard de analytics para instructores',
+      'Videoconferencias integradas',
+      'Sistema de certificaciones digitales'
+    ],
+    stack: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Stripe', 'WebRTC'],
+    category: 'Web',
+    status: 'completed' as const,
+    demoUrl: 'https://cursos.demo.com',
+    membershipUrl: '/web-revolut/tarifas/#membresia-proyectos'
+  },
+  {
+    title: 'Migración Cloud de Infraestructura',
+    description: 'Migración completa de servidores on-premise a AWS con alta disponibilidad. Reduce costes de infraestructura en un 40%.',
+    features: [
+      'Arquitectura multi-región con failover',
+      'Automatización completa con Terraform',
+      'Backup y disaster recovery',
+      'Optimización de costes con reserved instances',
+      'Security compliance (SOC2, ISO27001)',
+      'Monitoring y alerting avanzado'
+    ],
+    stack: ['AWS', 'Terraform', 'Ansible', 'Docker', 'Route53', 'CloudWatch'],
+    category: 'DevOps',
+    status: 'completed' as const,
+    membershipUrl: '/web-revolut/tarifas/#membresia-proyectos'
+  },
+  {
+    title: 'Pipeline de Machine Learning',
+    description: 'Sistema de ML para análisis predictivo en empresa fintech. Automatiza la detección de fraude y análisis de riesgo crediticio.',
+    features: [
+      'Pipeline de datos automatizado',
+      'Modelos de ML en producción',
+      'A/B testing para modelos',
+      'Monitorización de deriva de datos',
+      'API de inferencia en tiempo real',
+      'Reentrenamiento automatizado'
+    ],
+    stack: ['Python', 'MLflow', 'Apache Airflow', 'PostgreSQL', 'Docker', 'Kubernetes'],
+    category: 'Backend',
+    status: 'in-progress' as const,
+    membershipUrl: '/web-revolut/tarifas/#membresia-proyectos'
+  },
+  {
+    title: 'Plataforma de IoT Industrial',
+    description: 'Sistema de recolección y análisis de datos de sensores industriales. Optimiza el mantenimiento predictivo de maquinaria.',
+    features: [
+      'Ingesta de datos en tiempo real',
+      'Análisis predictivo de fallos',
+      'Dashboard de control industrial',
+      'Alertas automáticas de mantenimiento',
+      'Integración con sistemas ERP',
+      'Edge computing para latencia mínima'
+    ],
+    stack: ['Python', 'InfluxDB', 'Grafana', 'MQTT', 'Docker', 'Raspberry Pi'],
+    category: 'Sistemas',
+    status: 'planned' as const,
+    membershipUrl: '/web-revolut/tarifas/#membresia-proyectos'
+  }
+];
+
+// Categorías de proyectos
+const categories = [
+  { name: 'Todos', value: 'all' },
+  { name: 'DevOps', value: 'DevOps' },
+  { name: 'Backend', value: 'Backend' },
+  { name: 'Sistemas', value: 'Sistemas' },
+  { name: 'Web', value: 'Web' },
+  { name: 'Automatización', value: 'Automatización' }
+];
+
+// Estadísticas de proyectos
+const stats = [
+  {
+    metric: '50+',
+    label: 'Proyectos completados',
+    description: 'En diferentes tecnologías y sectores'
+  },
+  {
+    metric: '15+',
+    label: 'Tecnologías dominadas',
+    description: 'Stack completo actualizado'
+  },
+  {
+    metric: '98%',
+    label: 'Satisfacción del cliente',
+    description: 'Basado en feedback recibido'
+  },
+  {
+    metric: '24h',
+    label: 'Tiempo respuesta medio',
+    description: 'Para resolución de incidencias'
+  }
+];
+
+// Tecnologías más utilizadas
+const topTechnologies = [
+  { name: 'Python', count: 6, icon: '🐍' },
+  { name: 'Docker', count: 7, icon: '🐳' },
+  { name: 'PostgreSQL', count: 4, icon: '🐘' },
+  { name: 'AWS', count: 3, icon: '☁️' },
+  { name: 'Node.js', count: 2, icon: '💚' },
+  { name: 'Terraform', count: 3, icon: '🏗️' },
+  { name: 'Kubernetes', count: 3, icon: '⚓' },
+  { name: 'Grafana', count: 3, icon: '📊' }
+];
+---
+
+<Base
+  title="Proyectos - Saúl Moreno"
+  description="Portfolio de proyectos técnicos especializados en DevOps, desarrollo backend y automatización de sistemas. Acceso mediante membresía."
+  keywords="proyectos DevOps, desarrollo backend, automatización, infraestructura cloud, portfolio técnico, membresía"
+>
+  <Header slot="header" />
+  
+  <!-- Page Header -->
+  <section class="py-16 bg-gradient-to-r from-indigo-50 to-purple-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          Portfolio de proyectos
+        </h1>
+        <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          Selección de proyectos técnicos que demuestran experiencia en automatización, 
+          desarrollo backend, DevOps y administración de sistemas. <strong>Acceso disponible mediante membresía.</strong>
+        </p>
+        
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+          {stats.map((stat) => (
+            <div class="text-center">
+              <div class="text-3xl font-bold text-primary-600 mb-1">
+                {stat.metric}
+              </div>
+              <div class="text-sm font-medium text-gray-900 mb-1">
+                {stat.label}
+              </div>
+              <div class="text-xs text-gray-600">
+                {stat.description}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Category Filters -->
+  <section class="py-8 bg-white border-b border-gray-200">
+    <div class="container mx-auto px-4">
+      <div class="text-center">
+        <h2 class="text-lg font-semibold text-gray-900 mb-6">
+          Filtrar por categoría
+        </h2>
+        <div class="flex flex-wrap justify-center gap-3">
+          {categories.map((category, index) => (
+            <button 
+              class={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
+                index === 0 
+                  ? 'bg-primary-500 text-white border-primary-500' 
+                  : 'border-gray-300 text-gray-700 hover:border-primary-500 hover:text-primary-600'
+              }`}
+              data-category={category.value}
+            >
+              {category.name}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Projects Grid -->
+  <section class="py-16" aria-labelledby="projects-grid">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <div class="bg-gradient-to-r from-purple-100 to-blue-100 border border-purple-200 rounded-lg p-6 max-w-2xl mx-auto">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">🔒 Acceso mediante membresía</h3>
+          <p class="text-gray-600 mb-4">
+            Los proyectos completos, código fuente y documentación están disponibles 
+            para miembros. Incluye tutoriales paso a paso y soporte técnico.
+          </p>
+          <a
+            href="/web-revolut/tarifas/#membresia-proyectos"
+            class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+            Información de membresía
+          </a>
+        </div>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto" id="projects-container">
+        {projects.map((project) => (
+          <div data-category={project.category}>
+            <ProjectCard {...project} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Technologies Section -->
+  <section class="py-16 bg-gray-50" aria-labelledby="technologies">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 id="technologies" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Tecnologías más utilizadas
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Stack tecnológico con el que tengo más experiencia práctica en proyectos reales.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6 max-w-6xl mx-auto">
+        {topTechnologies.map((tech) => (
+          <div class="text-center bg-white rounded-xl p-4 shadow-lg border border-gray-200 hover:shadow-xl transition-shadow">
+            <div class="text-3xl mb-2">{tech.icon}</div>
+            <h3 class="font-semibold text-gray-900 text-sm mb-1">
+              {tech.name}
+            </h3>
+            <p class="text-xs text-gray-600">
+              {tech.count} proyectos
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Collaboration CTA -->
+  <section class="py-16 bg-primary-600">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-white mb-4">
+        ¿Tienes un proyecto en mente?
+      </h2>
+      <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
+        Especializado en automatización, DevOps y desarrollo backend. 
+        Contáctame para discutir cómo puedo ayudarte con tu próximo proyecto.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/web-revolut/tarifas/"
+          class="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-600 shadow-lg"
+        >
+          Solicitar presupuesto
+        </a>
+        <a
+          href="/web-revolut/servicios/"
+          class="border-2 border-white text-white hover:bg-white hover:text-primary-600 font-semibold py-3 px-8 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-600"
+        >
+          Ver servicios
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <Footer slot="footer" />
+</Base>
+
+<script>
+  // Category filtering functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const categoryButtons = document.querySelectorAll('[data-category]');
+    const projectContainer = document.getElementById('projects-container');
+    const projectCards = projectContainer?.querySelectorAll('[data-category]');
+    
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.getAttribute('data-category');
+        
+        // Update active button
+        categoryButtons.forEach(btn => {
+          btn.classList.remove('bg-primary-500', 'text-white', 'border-primary-500');
+          btn.classList.add('border-gray-300', 'text-gray-700', 'hover:border-primary-500', 'hover:text-primary-600');
+        });
+        
+        button.classList.add('bg-primary-500', 'text-white', 'border-primary-500');
+        button.classList.remove('border-gray-300', 'text-gray-700', 'hover:border-primary-500', 'hover:text-primary-600');
+        
+        // Filter projects
+        if (projectCards) {
+          projectCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        }
+      });
+    });
+  });
+</script>

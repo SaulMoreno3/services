@@ -1,0 +1,320 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+// Servicios principales
+const services = [
+  {
+    title: 'Docencia en centros de formación',
+    description: 'Formación técnica especializada en cursos de estudios propios, INAEM y formación a medida para empresas y centros educativos.',
+    features: [
+      'Cursos de estudios propios universitarios',
+      'Formación INAEM (programas oficiales)',
+      'Formación in-company a medida',
+      'Preparación para certificaciones técnicas'
+    ],
+    icon: 'teaching'
+  },
+  {
+    title: 'Automatización y DevOps',
+    description: 'Implementación de procesos de integración continua, orquestación de contenedores y observabilidad de sistemas.',
+    features: [
+      'CI/CD con GitHub Actions y GitLab',
+      'Orquestación con Docker y Kubernetes',
+      'Monitorización y observabilidad',
+      'Automatización de despliegues'
+    ],
+    icon: 'deployment'
+  },
+  {
+    title: 'Mantenimiento de servidores',
+    description: 'Administración y hardening de servidores Linux, gestión de contenedores, backups automatizados y seguridad.',
+    features: [
+      'Administración Linux (Ubuntu, CentOS)',
+      'Contenedores Docker y orchestración',
+      'Backups automatizados y DR',
+      'Hardening y seguridad de sistemas'
+    ],
+    icon: 'data'
+  },
+  {
+    title: 'Desarrollo de aplicaciones',
+    description: 'Desarrollo backend, APIs REST, data engineering y arquitecturas escalables usando tecnologías modernas.',
+    features: [
+      'APIs REST con Node.js y Python',
+      'Data engineering y ETL',
+      'Arquitecturas de microservicios',
+      'Bases de datos y optimización'
+    ],
+    icon: 'web'
+  }
+];
+
+// Proyectos destacados
+const featuredProjects = [
+  {
+    title: 'Plataforma de Formación Online',
+    description: 'Sistema completo de gestión de cursos con videoconferencias, evaluaciones automáticas y seguimiento de progreso. Incluye sistema de certificaciones y seguimiento detallado del progreso estudiantil.',
+    features: [
+      'Videoconferencias integradas con grabación',
+      'Evaluaciones automáticas con feedback inteligente',
+      'Seguimiento detallado del progreso',
+      'Sistema de certificaciones digitales',
+      'Panel de administración completo'
+    ],
+    stack: ['Node.js', 'Vue.js', 'PostgreSQL', 'Docker', 'WebRTC'],
+    category: 'Web',
+    status: 'completed' as const,
+    demoUrl: 'https://demo.formacion-platform.com',
+    membershipUrl: '/web-revolut/tarifas/#membresia-proyectos'
+  },
+  {
+    title: 'Sistema de Monitorización Empresarial',
+    description: 'Plataforma de observabilidad para servidores con alertas automáticas, métricas en tiempo real y dashboards personalizables. Incluye machine learning para detección de anomalías.',
+    features: [
+      'Dashboards personalizables en tiempo real',
+      'Alertas inteligentes multi-canal',
+      'Detección de anomalías con ML',
+      'Integración con múltiples proveedores',
+      'API REST completa para integraciones'
+    ],
+    stack: ['Python', 'Grafana', 'Prometheus', 'Kubernetes', 'TensorFlow'],
+    category: 'DevOps',
+    status: 'completed' as const,
+    demoUrl: 'https://demo.monitoring-system.com',
+    membershipUrl: '/web-revolut/tarifas/#membresia-proyectos'
+  },
+  {
+    title: 'Pipeline CI/CD Empresarial',
+    description: 'Automatización completa de despliegues con testing, security scanning y rollback automático. Soporta múltiples entornos y estrategias de despliegue avanzadas.',
+    features: [
+      'Testing automatizado multi-nivel',
+      'Security scanning integrado',
+      'Rollback automático inteligente',
+      'Despliegues blue-green y canary',
+      'Métricas de rendimiento en tiempo real'
+    ],
+    stack: ['GitHub Actions', 'Docker', 'Terraform', 'AWS', 'Kubernetes'],
+    category: 'Automatización',
+    status: 'in-progress' as const,
+    demoUrl: 'https://demo.enterprise-cicd.com',
+    membershipUrl: '/web-revolut/tarifas/#membresia-proyectos'
+  }
+];
+
+// Testimonios placeholder
+const testimonials = [
+  {
+    name: 'Centro de Formación Técnica',
+    text: 'Excelente formador. Sus cursos de automatización han mejorado significativamente nuestros procesos internos.',
+    role: 'Director técnico'
+  },
+  {
+    name: 'Empresa de Desarrollo',
+    text: 'Su expertise en DevOps nos ayudó a reducir los tiempos de despliegue en un 70%. Muy recomendable.',
+    role: 'CTO'
+  }
+];
+---
+
+<Base
+  title="Saúl Moreno — Docencia, Automatización y Desarrollo"
+  description="Formación técnica, automatización de procesos y desarrollo de aplicaciones en Zaragoza, España"
+  keywords="docencia INAEM, formación técnica, estudios propios, automatización, DevOps, mantenimiento de servidores, desarrollo de aplicaciones, Zaragoza"
+>
+  <Header slot="header" />
+  
+  <!-- Hero Section -->
+  <Hero 
+    title="Saúl Moreno Mancebón"
+    tagline="Formación técnica, automatización de procesos y desarrollo de aplicaciones"
+    ctaText="Solicitar presupuesto"
+    ctaHref="/web-revolut/tarifas/"
+  />
+  
+  <!-- Services Section -->
+  <section class="py-20 bg-gray-50" aria-labelledby="services-heading">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 id="services-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Servicios especializados
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Combino experiencia técnica en automatización y desarrollo con pasión por la enseñanza, 
+          ofreciendo formación de calidad y soluciones tecnológicas robustas.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        {services.map((service) => (
+          <ServiceCard {...service} />
+        ))}
+      </div>
+      
+      <div class="text-center mt-12">
+        <a
+          href="/web-revolut/servicios/"
+          class="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 shadow-lg"
+          aria-label="Ver detalles de todos los servicios"
+        >
+          Ver todos los servicios
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured Projects Section -->
+  <section class="py-20" aria-labelledby="projects-heading">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 id="projects-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Proyectos destacados
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Ejemplos de soluciones técnicas que demuestran mi experiencia en automatización, 
+          desarrollo y arquitecturas escalables.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {featuredProjects.map((project) => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+      
+      <div class="text-center mt-12">
+        <a
+          href="/web-revolut/proyectos/"
+          class="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 shadow-lg"
+          aria-label="Ver todos los proyectos"
+        >
+          Ver todos los proyectos
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Technologies Section -->
+  <section class="py-20 bg-gray-50" aria-labelledby="tech-heading">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 id="tech-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Stack tecnológico
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Herramientas y tecnologías que utilizo para crear soluciones eficientes y automatizadas.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <div class="text-center">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">DevOps</h3>
+          <div class="flex flex-wrap justify-center gap-2">
+            {['Docker', 'Kubernetes', 'GitHub Actions', 'Terraform', 'Ansible'].map((tech) => (
+              <span class="px-3 py-1 text-sm bg-primary-100 text-primary-700 rounded-full">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Backend</h3>
+          <div class="flex flex-wrap justify-center gap-2">
+            {['Node.js', 'Python', 'Java', 'Express', 'FastAPI'].map((tech) => (
+              <span class="px-3 py-1 text-sm bg-primary-100 text-primary-700 rounded-full">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Infraestructura</h3>
+          <div class="flex flex-wrap justify-center gap-2">
+            {['Linux', 'AWS', 'Nginx', 'PostgreSQL', 'Redis'].map((tech) => (
+              <span class="px-3 py-1 text-sm bg-primary-100 text-primary-700 rounded-full">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Monitorización</h3>
+          <div class="flex flex-wrap justify-center gap-2">
+            {['Grafana', 'Prometheus', 'ELK Stack', 'Zabbix'].map((tech) => (
+              <span class="px-3 py-1 text-sm bg-primary-100 text-primary-700 rounded-full">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials Section -->
+  <section class="py-20" aria-labelledby="testimonials-heading">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 id="testimonials-heading" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Lo que dicen mis clientes
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Testimonios de centros de formación y empresas que han confiado en mis servicios.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {testimonials.map((testimonial) => (
+          <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+            <blockquote class="text-gray-600 mb-4 leading-relaxed">
+              "{testimonial.text}"
+            </blockquote>
+            <footer class="border-t border-gray-200 pt-4">
+              <div class="font-semibold text-gray-900">{testimonial.name}</div>
+              <div class="text-sm text-gray-500">{testimonial.role}</div>
+            </footer>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="py-20 bg-primary-600" aria-labelledby="cta-heading">
+    <div class="container mx-auto px-4 text-center">
+      <h2 id="cta-heading" class="text-3xl md:text-4xl font-bold text-white mb-6">
+        ¿Necesitas formación o automatización?
+      </h2>
+      <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
+        Estoy disponible para nuevos proyectos de formación técnica, automatización de procesos 
+        y desarrollo de aplicaciones. Hablemos sobre tu proyecto.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a
+          href="/web-revolut/tarifas/"
+          class="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-600 shadow-lg"
+          aria-label="Solicitar presupuesto personalizado"
+        >
+          Solicitar presupuesto
+        </a>
+        <a
+          href="/web-revolut/sobre-mi/"
+          class="border-2 border-white text-white hover:bg-white hover:text-primary-600 font-semibold py-3 px-8 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-600"
+          aria-label="Conocer más sobre mi experiencia"
+        >
+          Conocer más
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <Footer slot="footer" />
+</Base>

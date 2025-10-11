@@ -1,0 +1,127 @@
+---
+export interface Props {
+  title: string;
+  tagline: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const { 
+  title, 
+  tagline, 
+  ctaText = "Contactar", 
+  ctaHref = "/portfolio/contacto/" 
+} = Astro.props;
+---
+
+<section class="relative py-20 md:py-32 bg-gradient-to-br from-primary-50 to-blue-100
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- Profile Image Placeholder -->
+      <div class="mb-8">
+        <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-primary-400 to-primary-600 flex items-center justify-center text-white text-4xl font-bold shadow-lg">
+          SP
+        </div>
+      </div>
+      
+      <!-- Main Title -->
+      <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+        {title}
+      </h1>
+      
+      <!-- Tagline -->
+      <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
+        {tagline}
+      </p>
+      
+      <!-- Location & Status -->
+      <div class="flex flex-wrap justify-center items-center gap-4 mb-8 text-gray-600
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          <span>Zaragoza, España</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+          <span>Disponible para proyectos</span>
+        </div>
+      </div>
+      
+      <!-- Call to Action -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a
+          href={ctaHref}
+          class="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 shadow-lg"
+          aria-label={`${ctaText} - Ir a la página de contacto`}
+        >
+          {ctaText}
+        </a>
+        <a
+          href="/portfolio/proyectos/"
+          class="bg-white text-primary-600 font-semibold py-3 px-8 rounded-lg border-2 border-primary-600 hover:bg-primary-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2"
+          aria-label="Ver proyectos - Ir a la página de proyectos"
+        >
+          Ver proyectos
+        </a>
+      </div>
+      
+      <!-- Quick Stats -->
+      <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
+        <div class="text-center">
+          <div class="text-2xl md:text-3xl font-bold text-primary-600
+          <div class="text-sm text-gray-600 docencia</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl md:text-3xl font-bold text-primary-600
+          <div class="text-sm text-gray-600
+        </div>
+        <div class="text-center">
+          <div class="text-2xl md:text-3xl font-bold text-primary-600
+          <div class="text-sm text-gray-600 FP</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl md:text-3xl font-bold text-primary-600
+          <div class="text-sm text-gray-600 consumido</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Background decoration -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+    <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+  </div>
+</section>
+
+<style>
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+  
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+</style>

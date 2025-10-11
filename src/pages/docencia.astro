@@ -1,0 +1,372 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Tipos de formación que imparto
+const trainingTypes = [
+  {
+    title: 'Formación reglada de Grado Superior',
+    description: 'Módulos específicos en ciclos formativos oficiales DAM, DAW y ASIR',
+    icon: '🎓',
+    details: [
+      'Módulo 0483: Sistemas de gestión empresarial',
+      'Módulo 0484: Programación',
+      'Programación en Java (POO avanzada)',
+      'Bases de datos (MySQL, PostgreSQL)',
+      'Sistemas informáticos y redes',
+      'Desarrollo web backend (Node.js, Express)'
+    ],
+    centers: ['IES públicos', 'Centros privados concertados', 'Academias homologadas'],
+    duration: 'Módulos de 90-150 horas lectivas',
+    certification: 'Oficial - Ministerio de Educación'
+  },
+  {
+    title: 'Estudios propios y programas INAEM',
+    description: 'Formación especializada para el empleo y mejora de competencias',
+    icon: '💼',
+    details: [
+      'IFCD0210: Desarrollo de aplicaciones web',
+      'IFCT0509: Administración de sistemas Linux',
+      'Programas de reconversión profesional',
+      'Competencias digitales avanzadas',
+      'Automatización de procesos empresariales',
+      'DevOps y metodologías ágiles'
+    ],
+    centers: ['Centros INAEM homologados', 'Academias certificadas'],
+    duration: 'Cursos de 300-590 horas',
+    certification: 'Certificados de profesionalidad oficiales'
+  },
+  {
+    title: 'Formación in-company y a medida',
+    description: 'Programas personalizados para empresas y equipos',
+    icon: '🏢',
+    details: [
+      'Capacitación técnica específica',
+      'Transición a tecnologías cloud',
+      'Implementación de DevOps',
+      'Optimización de procesos',
+      'Gestión de infraestructuras',
+      'Metodologías de desarrollo ágil'
+    ],
+    centers: ['En las instalaciones del cliente', 'Modalidad online', 'Centros especializados'],
+    duration: 'Programas de 20-200 horas según necesidades',
+    certification: 'Certificados internos o acreditaciones específicas'
+  }
+];
+
+// Módulos especializados que imparto
+const specializedModules = [
+  {
+    code: '0483',
+    title: 'Sistemas de gestión empresarial',
+    cycle: 'DAM / DAW',
+    description: 'Desarrollo e implementación de sistemas empresariales integrados.',
+    topics: [
+      'Arquitecturas de sistemas empresariales',
+      'Integración de aplicaciones',
+      'Gestión de bases de datos empresariales',
+      'APIs y servicios web',
+      'Seguridad en sistemas corporativos'
+    ]
+  },
+  {
+    code: '0484',
+    title: 'Programación (Java especializado)',
+    cycle: 'DAM / DAW / ASIR',
+    description: 'Programación orientada a objetos avanzada con Java.',
+    topics: [
+      'POO avanzada con Java',
+      'Frameworks Spring y Spring Boot',
+      'Persistencia con JPA/Hibernate',
+      'Testing automatizado con JUnit',
+      'Patrones de diseño enterprise'
+    ]
+  },
+  {
+    code: 'BD',
+    title: 'Bases de Datos',
+    cycle: 'DAM / DAW / ASIR',
+    description: 'Diseño, implementación y administración de bases de datos.',
+    topics: [
+      'Diseño conceptual y lógico',
+      'SQL avanzado y optimización',
+      'Administración MySQL/PostgreSQL',
+      'Bases de datos NoSQL',
+      'Backup y recuperación'
+    ]
+  },
+  {
+    code: 'SI',
+    title: 'Sistemas Informáticos',
+    cycle: 'ASIR',
+    description: 'Administración de sistemas operativos y redes.',
+    topics: [
+      'Administración Linux avanzada',
+      'Virtualización con Docker',
+      'Configuración de servicios de red',
+      'Scripting y automatización',
+      'Monitorización y troubleshooting'
+    ]
+  },
+  {
+    code: 'BACKEND',
+    title: 'Desarrollo Backend',
+    cycle: 'DAM / DAW',
+    description: 'Desarrollo de aplicaciones servidor con Node.js.',
+    topics: [
+      'Node.js y Express framework',
+      'APIs REST y GraphQL',
+      'Autenticación y autorización',
+      'Integración con bases de datos',
+      'Testing y documentación API'
+    ]
+  }
+];
+
+// Experiencia docente resumida
+const teachingStats = [
+  { metric: '530+', label: 'Estudiantes formados', description: 'En diferentes modalidades' },
+  { metric: '89%', label: 'Inserción laboral', description: 'Media de mis estudiantes' },
+  { metric: '4.8/5', label: 'Valoración docente', description: 'Evaluaciones de centros' },
+  { metric: '15+', label: 'Centros colaboradores', description: 'Públicos y privados' }
+];
+
+// Metodología de enseñanza
+const methodology = [
+  {
+    title: 'Aprendizaje basado en proyectos',
+    description: 'Desarrollo de aplicaciones reales desde el primer día',
+    icon: '🚀'
+  },
+  {
+    title: 'Mentoring personalizado',
+    description: 'Seguimiento individual del progreso de cada estudiante',
+    icon: '👥'
+  },
+  {
+    title: 'Orientación al empleo',
+    description: 'Preparación específica para el mercado laboral actual',
+    icon: '💼'
+  },
+  {
+    title: 'Tecnologías actuales',
+    description: 'Stack tecnológico alineado con demandas empresariales',
+    icon: '⚡'
+  }
+];
+---
+
+<Base
+  title="Docencia - Saúl Moreno"
+  description="Experiencia en formación técnica: Grado Superior, INAEM, programas especializados. Docencia en DAM, DAW, ASIR y competencias digitales."
+  keywords="formación reglada grado superior, INAEM, docencia técnica, DAM, DAW, ASIR, módulos 0483 0484"
+>
+  <Header slot="header" />
+  
+  <!-- Page Header -->
+  <section class="py-16 bg-gradient-to-r from-blue-50 to-indigo-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          Experiencia docente
+        </h1>
+        <p class="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
+          Especialista en formación técnica con amplia experiencia en <strong>formación reglada de Grado Superior</strong>, 
+          programas INAEM y capacitación empresarial. Enfoque práctico orientado al empleo.
+        </p>
+        
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+          {teachingStats.map((stat) => (
+            <div class="text-center">
+              <div class="text-3xl font-bold text-gray-900 mb-1">
+                {stat.metric}
+              </div>
+              <div class="text-sm font-medium text-gray-900 mb-1">
+                {stat.label}
+              </div>
+              <div class="text-xs text-gray-700">
+                {stat.description}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Training Types -->
+  <section class="py-16" aria-labelledby="training-types">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 id="training-types" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Tipos de formación que imparto
+        </h2>
+        <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+          Experiencia diversa adaptada a diferentes perfiles y necesidades formativas.
+        </p>
+      </div>
+      
+      <div class="max-w-6xl mx-auto space-y-8">
+        {trainingTypes.map((type, index) => (
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+            <div class="p-8">
+              <div class="flex items-start gap-6">
+                <div class="text-4xl">{type.icon}</div>
+                <div class="flex-1">
+                  <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                    {type.title}
+                  </h3>
+                  <p class="text-gray-700 mb-6 leading-relaxed">
+                    {type.description}
+                  </p>
+                  
+                  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Details -->
+                    <div>
+                      <h4 class="font-semibold text-gray-900 mb-3">Contenidos específicos</h4>
+                      <ul class="space-y-1">
+                        {type.details.map((detail) => (
+                          <li class="text-sm text-gray-600 flex items-start gap-2">
+                            <svg class="w-4 h-4 text-primary-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <!-- Centers -->
+                    <div>
+                      <h4 class="font-semibold text-gray-900 mb-3">Centros de impartición</h4>
+                      <ul class="space-y-1">
+                        {type.centers.map((center) => (
+                          <li class="text-sm text-gray-600">• {center}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <!-- Certification -->
+                    <div>
+                      <h4 class="font-semibold text-gray-900 mb-3">Información adicional</h4>
+                      <div class="space-y-2 text-sm text-gray-600">
+                        <div><strong>Duración:</strong> {type.duration}</div>
+                        <div><strong>Certificación:</strong> {type.certification}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Specialized Modules -->
+  <section class="py-16 bg-gray-50" aria-labelledby="modules">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 id="modules" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Módulos especializados
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Módulos específicos de ciclos formativos y programas técnicos especializados.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {specializedModules.map((module) => (
+          <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+            <div class="flex items-center justify-between mb-4">
+              <div class="bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm font-medium">
+                {module.code}
+              </div>
+              <div class="text-xs text-gray-500">{module.cycle}</div>
+            </div>
+            
+            <h3 class="text-lg font-bold text-gray-900 mb-2">
+              {module.title}
+            </h3>
+            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+              {module.description}
+            </p>
+            
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-2 text-sm">Temario principal:</h4>
+              <ul class="space-y-1">
+                {module.topics.map((topic) => (
+                  <li class="text-xs text-gray-600 flex items-start gap-1">
+                    <span class="text-primary-500 mt-1">•</span>
+                    {topic}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Methodology -->
+  <section class="py-16" aria-labelledby="methodology">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 id="methodology" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Metodología de enseñanza
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Enfoque práctico y orientado a resultados, basado en experiencia real del sector.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        {methodology.map((method) => (
+          <div class="text-center">
+            <div class="text-4xl mb-4">{method.icon}</div>
+            <h3 class="text-lg font-bold text-gray-900 mb-3">
+              {method.title}
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              {method.description}
+            </p>
+          </div>
+        ))}
+      </div>
+      
+      <!-- Call to Action -->
+      <div class="text-center mt-16">
+        <div class="bg-primary-50 rounded-2xl p-8 max-w-4xl mx-auto">
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">
+            ¿Necesitas formación técnica especializada?
+          </h3>
+          <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+            Ofrezco formación tanto para centros educativos como para empresas que quieran 
+            capacitar a sus equipos en tecnologías actuales.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="/web-revolut/tarifas/" 
+              class="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-300"
+            >
+              Ver tarifas de formación
+            </a>
+            <a 
+              href="/web-revolut/servicios/" 
+              class="border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-300"
+            >
+              Conocer servicios
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <Footer slot="footer" />
+</Base>

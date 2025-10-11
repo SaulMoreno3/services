@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://TU_USUARIO.github.io/portfolio/sitemap-index.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Block access to sensitive files
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /admin/
+Disallow: /private/

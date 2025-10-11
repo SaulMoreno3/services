@@ -1,0 +1,630 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Información personal y profesional
+const personalInfo = {
+  name: 'Saúl Moreno Mancebón',
+  title: 'Especialista en Formación Técnica, DevOps y Automatización',
+  location: 'Zaragoza, España',
+  experience_years: 8,
+  email: 'saul.moreno@ejemplo.com',
+  linkedin: 'https://linkedin.com/in/saul-moreno-manc',
+  github: 'https://github.com/saul-moreno'
+};
+
+// Trayectoria profesional resumida
+const journey = [
+  {
+    period: 'Actualidad',
+    title: 'Especialista DevOps y Formador',
+    description: 'Consultoría en automatización, formación técnica y gestión de infraestructuras cloud.',
+    focus: 'Docencia + Automatización + Consultoría'
+  },
+  {
+    period: '2020-2023',
+    title: 'Transición al sector tecnológico',
+    description: 'Formación intensiva en desarrollo de software, administración de sistemas y metodologías DevOps.',
+    focus: 'Desarrollo + Sistemas + Formación continua'
+  },
+  {
+    period: '2018-2020',
+    title: 'Analista de datos en industria química',
+    description: 'Análisis de procesos industriales, optimización de rendimientos y automatización de reportes.',
+    focus: 'Datos + Automatización + Optimización'
+  },
+  {
+    period: '2015-2018',
+    title: 'Químico industrial',
+    description: 'Control de calidad, análisis de laboratorio y mejora de procesos en entorno industrial.',
+    focus: 'Análisis + Calidad + Procesos'
+  }
+];
+
+// Competencias técnicas organizadas por categorías
+const technicalSkills = [
+  {
+    category: 'Docencia y Formación',
+    icon: '🎓',
+    skills: [
+      { name: 'Diseño curricular', level: 95 },
+      { name: 'Metodologías activas', level: 90 },
+      { name: 'Evaluación competencial', level: 88 },
+      { name: 'Formación online/presencial', level: 92 },
+      { name: 'Orientación laboral', level: 85 }
+    ]
+  },
+  {
+    category: 'DevOps y Automatización',
+    icon: '⚙️',
+    skills: [
+      { name: 'Docker & Kubernetes', level: 88 },
+      { name: 'CI/CD (GitLab, GitHub Actions)', level: 90 },
+      { name: 'Infrastructure as Code', level: 85 },
+      { name: 'Monitorización (Prometheus)', level: 82 },
+      { name: 'Cloud AWS/Azure', level: 80 }
+    ]
+  },
+  {
+    category: 'Desarrollo Backend',
+    icon: '💻',
+    skills: [
+      { name: 'Python (FastAPI, Django)', level: 90 },
+      { name: 'Node.js (Express)', level: 85 },
+      { name: 'Bases de datos (PostgreSQL)', level: 88 },
+      { name: 'APIs REST', level: 92 },
+      { name: 'Testing automatizado', level: 85 }
+    ]
+  },
+  {
+    category: 'Administración de Sistemas',
+    icon: '🖥️',
+    skills: [
+      { name: 'Linux (Ubuntu, CentOS)', level: 90 },
+      { name: 'Scripting (Bash, Python)', level: 88 },
+      { name: 'Nginx/Apache', level: 85 },
+      { name: 'Backup y recuperación', level: 87 },
+      { name: 'Seguridad y hardening', level: 82 }
+    ]
+  }
+];
+
+// Certificaciones y formación (propias)
+const certifications = [
+  {
+    title: 'Grado en Ingeniería Informática',
+    issuer: 'Universidad de Zaragoza',
+    year: '2019-2023',
+    status: 'Graduado'
+  },
+  {
+    title: 'Grado en Ingeniería Química',
+    issuer: 'Universidad de Zaragoza',
+    year: '2017-2022',
+    status: 'Graduado'
+  },
+  {
+    title: 'AWS Solutions Architect Associate',
+    issuer: 'Amazon Web Services',
+    year: '2023',
+    status: 'En progreso'
+  },
+  {
+    title: 'Docker Certified Associate',
+    issuer: 'Docker Inc.',
+    year: '2022',
+    status: 'Certificado'
+  },
+  {
+    title: 'Formador de Formadores',
+    issuer: 'INAEM Aragón',
+    year: '2021',
+    status: 'Certificado'
+  }
+];
+
+// Certificaciones que preparo a estudiantes
+const certificationsIPrepare = [
+  {
+    title: 'AWS Certified Solutions Architect',
+    description: 'Preparación para el examen de certificación en arquitectura cloud de AWS',
+    level: 'Associate'
+  },
+  {
+    title: 'AWS Certified Developer',
+    description: 'Formación en desarrollo de aplicaciones en cloud AWS',
+    level: 'Associate'
+  },
+  {
+    title: 'Docker Certified Associate',
+    description: 'Certificación en containerización y tecnologías Docker',
+    level: 'Professional'
+  },
+  {
+    title: 'Kubernetes Administrator (CKA)',
+    description: 'Administración de clusters de Kubernetes en producción',
+    level: 'Professional'
+  },
+  {
+    title: 'GitHub Actions Certification',
+    description: 'Automatización de CI/CD con GitHub Actions',
+    level: 'Professional'
+  },
+  {
+    title: 'Linux Professional Institute (LPIC)',
+    description: 'Administración avanzada de sistemas Linux',
+    level: 'Professional'
+  }
+];
+
+// Valores y filosofía de trabajo
+const values = [
+  {
+    title: 'Aprendizaje continuo',
+    description: 'La tecnología evoluciona constantemente. Mantengo una actitud de curiosidad y formación permanente.',
+    icon: '📚'
+  },
+  {
+    title: 'Orientación práctica',
+    description: 'Creo en el aprendizaje basado en la práctica. Cada proyecto debe aportar valor real y medible.',
+    icon: '🛠️'
+  },
+  {
+    title: 'Transparencia',
+    description: 'Comunicación clara sobre alcances, tiempos y limitaciones. Honestidad en cada etapa del proyecto.',
+    icon: '🔍'
+  },
+  {
+    title: 'Calidad técnica',
+    description: 'Código limpio, documentación completa y buenas prácticas. La excelencia técnica no es negociable.',
+    icon: '⭐'
+  }
+];
+
+// Intereses personales
+const personalInterests = [
+  'Automatización de procesos domésticos con Raspberry Pi',
+  'Contribución a proyectos open source',
+  'Escritura técnica y documentación',
+  'Mentoring a personas en transición profesional',
+  'Senderismo y actividades al aire libre',
+  'Lectura sobre productividad y gestión del tiempo'
+];
+
+// Estadísticas profesionales
+const stats = [
+  {
+    metric: '530+',
+    label: 'Estudiantes formados',
+    description: 'En diferentes modalidades'
+  },
+  {
+    metric: '50+',
+    label: 'Proyectos completados',
+    description: 'DevOps, backend y sistemas'
+  },
+  {
+    metric: '89%',
+    label: 'Inserción laboral',
+    description: 'De mis estudiantes'
+  },
+  {
+    metric: '4.8/5',
+    label: 'Valoración media',
+    description: 'En evaluaciones docentes'
+  }
+];
+---
+      <Base
+  title="Sobre mí - Saúl Moreno"
+  description="Biografía técnica de Saúl Moreno: transición de químico a especialista en DevOps, formación técnica y automatización de sistemas."
+  keywords="biografía técnica, especialista DevOps, formador técnico, transición profesional, químico a IT"
+>
+  <Header slot="header" />
+  
+  <!-- Hero Section -->
+  <section class="py-16 bg-gradient-to-r from-indigo-50 to-blue-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Text Content -->
+          <div>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Hola, soy {personalInfo.name}
+            </h1>
+            <p class="text-xl text-gray-700 font-medium mb-6">
+              {personalInfo.title}
+            </p>
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+              Mi historia es la de una <strong>transición profesional exitosa</strong>: de químico industrial 
+              a especialista en tecnología. Combino rigor científico con pasión por la enseñanza y 
+              la automatización, ayudando a personas y organizaciones a adoptar tecnologías que 
+              realmente aportan valor.
+            </p>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+              {stats.map((stat) => (
+                <div class="text-center p-4 bg-white rounded-lg shadow-md">
+                  <div class="text-2xl font-bold text-gray-900">
+                    {stat.metric}
+                  </div>
+                  <div class="text-sm font-medium text-gray-900 mb-1">
+                    {stat.label}
+                  </div>
+                  <div class="text-xs text-gray-700">
+                    {stat.description}
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <!-- Contact Links -->
+            <div class="flex flex-wrap gap-4">
+              <a
+                href={`mailto:${personalInfo.email}`}
+                class="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 shadow-lg"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                Contactar
+              </a>
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+          </div>
+          
+          <!-- Visual/Photo Area -->
+          <div class="text-center">
+            <div class="w-80 h-80 mx-auto bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center mb-6 shadow-lg">
+              <div class="text-center">
+                <div class="text-6xl mb-4">🧑‍💻</div>
+                <div class="text-lg font-bold text-gray-700">
+                  {personalInfo.experience_years}+ años
+                </div>
+                <div class="text-sm text-gray-600">
+                  en tecnología
+                </div>
+              </div>
+            </div>
+            <p class="text-gray-600">
+              📍 {personalInfo.location}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Journey Timeline -->
+  <section class="py-16" aria-labelledby="journey">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 id="journey" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Mi trayectoria profesional
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          De la química industrial a la tecnología: una transición que demuestra que 
+          nunca es tarde para reinventarse profesionalmente.
+        </p>
+      </div>
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="space-y-8">
+          {journey.map((period, index) => (
+            <div class={`flex items-start gap-8 ${index % 2 === 0 ? '' : 'flex-row-reverse'}`}>
+              <!-- Timeline dot -->
+              <div class="flex-shrink-0 w-4 h-4 bg-primary-600 rounded-full mt-2 relative">
+                {index < journey.length - 1 && (
+                  <div class="absolute top-4 left-1/2 w-0.5 h-16 bg-primary-200 transform -translate-x-1/2"></div>
+                )}
+              </div>
+              
+              <!-- Content -->
+              <div class={`flex-grow ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
+                <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+                  <div class="mb-2">
+                    <span class="text-sm font-medium text-primary-600">
+                      {period.period}
+                    </span>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-3">
+                    {period.title}
+                  </h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    {period.description}
+                  </p>
+                  <div class="inline-flex items-center gap-2 bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-sm font-medium">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                    {period.focus}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Technical Skills -->
+  <section class="py-16 bg-gray-50" aria-labelledby="skills">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 id="skills" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Competencias técnicas
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Habilidades desarrolladas a través de proyectos reales y formación continua.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {technicalSkills.map((category) => (
+          <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="text-3xl">{category.icon}</div>
+              <h3 class="text-xl font-bold text-gray-900">
+                {category.category}
+              </h3>
+            </div>
+            
+            <div class="space-y-4">
+              {category.skills.map((skill) => (
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-gray-700 font-medium">
+                      {skill.name}
+                    </span>
+                    <span class="text-sm text-gray-600">
+                      {skill.level}%
+                    </span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div 
+                      class="bg-primary-600 h-2 rounded-full transition-all duration-700 ease-out"
+                      style={"width: " + skill.level + "%"}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Values and Philosophy -->
+  <section class="py-16" aria-labelledby="values">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 id="values" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Valores y filosofía de trabajo
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Los principios que guían mi trabajo y definen la calidad de mis servicios.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        {values.map((value) => (
+          <div class="text-center bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+            <div class="text-4xl mb-4">{value.icon}</div>
+            <h3 class="text-lg font-bold text-gray-900 mb-3">
+              {value.title}
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              {value.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Certifications -->
+  <section class="py-16 bg-gray-50" aria-labelledby="certifications">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 id="certifications" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Formación y certificaciones
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Compromiso con la formación continua y el desarrollo profesional.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        {certifications.map((cert) => (
+          <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200 text-center">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+              </svg>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2 text-sm">
+              {cert.title}
+            </h3>
+            <p class="text-gray-600 text-xs mb-2">
+              {cert.issuer}
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-gray-500">
+                {cert.year}
+              </span>
+              <span class={`text-xs px-2 py-1 rounded-full ${
+                cert.status === 'Certificado' ? 'bg-green-100 text-green-700' :
+                cert.status === 'En progreso' ? 'bg-blue-100 text-blue-700' :
+                'bg-gray-100 text-gray-700'
+              }`}>
+                {cert.status}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Certifications I Prepare Students For -->
+  <section class="py-16" aria-labelledby="cert-prepare">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 id="cert-prepare" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Certificaciones que preparo
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Titulaciones y certificaciones técnicas para las que ofrezco preparación y mentorización especializada.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {certificationsIPrepare.map((cert) => (
+          <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200 hover:shadow-xl transition-shadow">
+            <div class="flex items-start justify-between mb-4">
+              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                </svg>
+              </div>
+              <span class={`text-xs px-2 py-1 rounded-full font-medium ${
+                cert.level === 'Professional' ? 'bg-purple-100 text-purple-700' : 'bg-green-100 text-green-700'
+              }`}>
+                {cert.level}
+              </span>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2 text-sm leading-tight">
+              {cert.title}
+            </h3>
+            <p class="text-gray-600 text-xs leading-relaxed">
+              {cert.description}
+            </p>
+          </div>
+        ))}
+      </div>
+      
+      <div class="text-center mt-12">
+        <div class="bg-blue-50 rounded-xl p-6 max-w-4xl mx-auto">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">
+            ¿Necesitas preparar alguna certificación?
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Ofrezco mentorización personalizada y programas de preparación específicos para cada certificación.
+          </p>
+          <a 
+            href="/web-revolut/tarifas/" 
+            class="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-300"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            </svg>
+            Consultar disponibilidad
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Personal Interests -->
+  <section class="py-16" aria-labelledby="interests">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 id="interests" class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Más allá del código
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Intereses y actividades que me mantienen motivado y en constante aprendizaje.
+        </p>
+      </div>
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+          <div class="grid md:grid-cols-2 gap-6">
+            {personalInterests.map((interest) => (
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-primary-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-gray-700">{interest}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="py-16 bg-primary-600">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-white mb-4">
+        ¿Te identificas con mi enfoque?
+      </h2>
+      <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
+        Si buscas alguien que combine experiencia técnica con pasión por la enseñanza 
+        y un enfoque práctico, me encantaría conocer tu proyecto.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/web-revolut/tarifas/"
+          class="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-600 shadow-lg"
+        >
+          Hablemos de tu proyecto
+        </a>
+        <a
+          href="/web-revolut/servicios/"
+          class="border-2 border-white text-white hover:bg-white hover:text-primary-600 font-semibold py-3 px-8 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-600"
+        >
+          Ver mis servicios
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <Footer slot="footer" />
+</Base>
+
+<script>
+  // Animate skill bars on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const skillBars = document.querySelectorAll('.bg-primary-600');
+    
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.target.style.width) {
+          const targetWidth = entry.target.style.width;
+          entry.target.style.width = '0%';
+          setTimeout(() => {
+            entry.target.style.width = targetWidth;
+          }, 100);
+        }
+      });
+    }, observerOptions);
+    
+    skillBars.forEach(bar => {
+      if (bar.parentElement?.classList.contains('bg-gray-200')) {
+        observer.observe(bar);
+      }
+    });
+  });
+</script>

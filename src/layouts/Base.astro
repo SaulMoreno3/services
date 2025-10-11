@@ -1,0 +1,117 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+}
+
+const { 
+  title = "Saúl Moreno — Docencia, Automatización y Desarrollo",
+  description = "Formación técnica, automatización de procesos y desarrollo de aplicaciones en Zaragoza, España",
+  keywords = "docencia INAEM, formación técnica, estudios propios, automatización, DevOps, mantenimiento de servidores, desarrollo de aplicaciones, Zaragoza",
+  image = "/web-revolut/images/og-image.jpg"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, "https://TU_USUARIO.github.io");
+const siteURL = "https://TU_USUARIO.github.io/web-revolut";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Saúl Moreno Mancebón",
+  "jobTitle": "Formador técnico, especialista en automatización y desarrollo de aplicaciones",
+  "description": "Especialista en docencia técnica, automatización de procesos y desarrollo de aplicaciones",
+  "url": siteURL,
+  "sameAs": [
+    "https://github.com/TU_USUARIO",
+    "https://linkedin.com/in/saul-moreno",
+    "https://twitter.com/TU_USUARIO"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Zaragoza",
+    "addressCountry": "España"
+  },
+  "knowsAbout": [
+    "Docencia técnica",
+    "Formación INAEM",
+    "Estudios propios",
+    "Automatización de procesos",
+    "DevOps",
+    "Mantenimiento de servidores",
+    "Desarrollo de aplicaciones",
+    "Linux",
+    "Contenedores"
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/svg+xml" href="/web-revolut/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, siteURL)} />
+    <meta property="og:locale" content="es_ES" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, siteURL)} />
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/web-revolut/site.webmanifest" />
+    <meta name="theme-color" content="#1d4ed8" />
+  </head>
+  
+  <body class="bg-white text-gray-900 font-sans antialiased">
+    <!-- Skip to main content -->
+    <a 
+      href="#main-content" 
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-600 text-white px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-primary-300"
+    >
+      Saltar al contenido principal
+    </a>
+    
+    <div class="min-h-screen flex flex-col">
+      <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200">
+        <slot name="header" />
+      </header>
+      
+      <main id="main-content" class="flex-1">
+        <slot />
+      </main>
+      
+      <footer class="bg-gray-50 border-t border-gray-200">
+        <slot name="footer" />
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: '/web-revolut/', label: 'Inicio' },
+  { href: '/web-revolut/servicios/', label: 'Servicios' },
+  { href: '/web-revolut/docencia/', label: 'Docencia' },
+  { href: '/web-revolut/proyectos/', label: 'Proyectos' },
+  { href: '/web-revolut/tarifas/', label: 'Tarifas' },
+  { href: '/web-revolut/sobre-mi/', label: 'Sobre mí' },
+];
+
+function isActive(href: string, currentPath: string): boolean {
+  if (href === '/web-revolut/' && currentPath === '/web-revolut/') return true;
+  if (href !== '/web-revolut/' && currentPath.startsWith(href)) return true;
+  return false;
+}
+---
+
+<nav class="container mx-auto px-4 py-4" role="navigation" aria-label="Navegación principal">
+  <div class="flex items-center justify-between">
+    <!-- Logo/Brand -->
+    <a 
+      href="/web-revolut/" 
+      class="text-xl font-bold text-primary-600 hover:text-primary-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-300 rounded-md px-1"
+      aria-label="Ir al inicio - Saúl Moreno"
+    >
+      Saúl Moreno
+    </a>
+    
+    <!-- Desktop Navigation -->
+    <ul class="hidden md:flex space-x-1" role="menubar">
+      {navItems.map(({ href, label }) => (
+        <li role="none">
+          <a
+            href={href}
+            class={`px-3 py-2 rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary-300 ${
+              isActive(href, currentPath)
+                ? 'bg-primary-100 text-primary-700'
+                : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+            }`}
+            role="menuitem"
+            aria-current={isActive(href, currentPath) ? 'page' : undefined}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    
+    <!-- Mobile menu button -->
+    <button 
+      id="mobile-menu-button" 
+      type="button"
+      class="md:hidden p-2 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-300 rounded-md"
+      aria-label="Abrir menú de navegación"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <!-- Mobile Navigation -->
+  <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4 border-t border-gray-200 pt-4">
+    <ul class="space-y-2" role="menu">
+      {navItems.map(({ href, label }) => (
+        <li role="none">
+          <a
+            href={href}
+            class={`block px-3 py-2 rounded-md text-base font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary-300 ${
+              isActive(href, currentPath)
+                ? 'bg-primary-100 text-primary-700'
+                : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+            }`}
+            role="menuitem"
+            aria-current={isActive(href, currentPath) ? 'page' : undefined}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu functionality
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuButton?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.contains('hidden') === false;
+    if (isOpen) {
+      mobileMenu?.classList.add('hidden');
+      mobileMenuButton.setAttribute('aria-expanded', 'false');
+      mobileMenuButton.setAttribute('aria-label', 'Abrir menú de navegación');
+    } else {
+      mobileMenu?.classList.remove('hidden');
+      mobileMenuButton.setAttribute('aria-expanded', 'true');
+      mobileMenuButton.setAttribute('aria-label', 'Cerrar menú de navegación');
+    }
+  });
+</script>
