@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://PredaZGZ.github.io/services",
-  base: "/web-revolut/",
+  base: "/services/",
   output: "static",
   integrations: [tailwind(), sitemap()]
 });
