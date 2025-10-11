@@ -4,7 +4,7 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://TU_USUARIO.github.io",
+  site: "https://PredaZGZ.github.io/services",
   base: "/web-revolut/",
   output: "static",
   integrations: [tailwind(), sitemap()]
