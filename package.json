@@ -1,5 +1,5 @@
 {
-  "name": "web-revolut",
+  "name": "services",
   "private": true,
   "scripts": {
     "dev": "astro dev",
