@@ -4,6 +4,8 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 
+const base = import.meta.env.BASE_URL;
+
 const meta = {
   title: 'Servicios — Saúl Moreno',
   description: 'Docencia técnica, automatización/DevOps, mantenimiento de servidores y desarrollo de aplicaciones.'
@@ -114,7 +116,7 @@ const workProcess = [
         </p>
         <div class="mt-8">
           <a 
-            href="/web-revolut/tarifas/" 
+            href={`${base}tarifas/`} 
             class="inline-flex items-center gap-2 px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 font-medium"
           >
             Ver tarifas y contacto
@@ -208,7 +210,7 @@ const workProcess = [
             <!-- CTA Button -->
             <div class="text-center">
               <a 
-                href="/web-revolut/tarifas/" 
+                href={`${base}tarifas/`} 
                 class="inline-flex items-center justify-center w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 font-medium"
               >
                 Solicitar presupuesto
@@ -273,13 +275,13 @@ const workProcess = [
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a 
-            href="/web-revolut/tarifas/" 
+            href={`${base}tarifas/`} 
             class="inline-flex items-center justify-center px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 font-medium"
           >
             Ver tarifas y contactar
           </a>
           <a 
-            href="/web-revolut/proyectos/" 
+            href={`${base}proyectos/`} 
             class="inline-flex items-center justify-center px-8 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 font-medium"
           >
             Ver proyectos

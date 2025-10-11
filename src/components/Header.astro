@@ -1,18 +1,19 @@
 ---
+const base = import.meta.env.BASE_URL;
 const currentPath = Astro.url.pathname;
 
 const navItems = [
-  { href: '/web-revolut/', label: 'Inicio' },
-  { href: '/web-revolut/servicios/', label: 'Servicios' },
-  { href: '/web-revolut/docencia/', label: 'Docencia' },
-  { href: '/web-revolut/proyectos/', label: 'Proyectos' },
-  { href: '/web-revolut/tarifas/', label: 'Tarifas' },
-  { href: '/web-revolut/sobre-mi/', label: 'Sobre mí' },
+  { href: `${base}`, label: 'Inicio' },
+  { href: `${base}servicios/`, label: 'Servicios' },
+  { href: `${base}docencia/`, label: 'Docencia' },
+  { href: `${base}proyectos/`, label: 'Proyectos' },
+  { href: `${base}tarifas/`, label: 'Tarifas' },
+  { href: `${base}sobre-mi/`, label: 'Sobre mí' },
 ];
 
 function isActive(href: string, currentPath: string): boolean {
-  if (href === '/web-revolut/' && currentPath === '/web-revolut/') return true;
-  if (href !== '/web-revolut/' && currentPath.startsWith(href)) return true;
+  if (href === base && currentPath === base) return true;
+  if (href !== base && currentPath.startsWith(href)) return true;
   return false;
 }
 ---
@@ -21,7 +22,7 @@ function isActive(href: string, currentPath: string): boolean {
   <div class="flex items-center justify-between">
     <!-- Logo/Brand -->
     <a 
-      href="/web-revolut/" 
+      href={base} 
       class="text-xl font-bold text-primary-600 hover:text-primary-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-300 rounded-md px-1"
       aria-label="Ir al inicio - Saúl Moreno"
     >

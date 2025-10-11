@@ -3,6 +3,8 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
+const base = import.meta.env.BASE_URL;
+
 // Información personal y profesional
 const personalInfo = {
   name: 'Saúl Moreno Mancebón',
@@ -526,7 +528,7 @@ const stats = [
             Ofrezco mentorización personalizada y programas de preparación específicos para cada certificación.
           </p>
           <a 
-            href="/web-revolut/tarifas/" 
+            href={`${base}tarifas/`} 
             class="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-300"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -581,13 +583,13 @@ const stats = [
       
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
-          href="/web-revolut/tarifas/"
+          href={`${base}tarifas/`}
           class="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-600 shadow-lg"
         >
           Hablemos de tu proyecto
         </a>
         <a
-          href="/web-revolut/servicios/"
+          href={`${base}servicios/`}
           class="border-2 border-white text-white hover:bg-white hover:text-primary-600 font-semibold py-3 px-8 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-600"
         >
           Ver mis servicios

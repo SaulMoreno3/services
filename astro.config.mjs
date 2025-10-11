@@ -7,5 +7,6 @@ export default defineConfig({
   site: "https://PredaZGZ.github.io/services",
   base: "/services/",
   output: "static",
+  trailingSlash: "always",
   integrations: [tailwind(), sitemap()]
 });

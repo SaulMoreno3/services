@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const meta = {
+  title: '404 - Página no encontrada — Saúl Moreno',
+  description: 'La página que buscas no existe. Vuelve al inicio para encontrar lo que necesitas.'
+};
+---
+
+<Base title={meta.title} description={meta.description}>
+  <Header />
+  
+  <section class="py-16 min-h-[60vh] flex items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-md mx-auto">
+        <div class="mb-8">
+          <h1 class="text-9xl font-bold text-primary-600 mb-4">404</h1>
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            Página no encontrada
+          </h2>
+          <p class="text-lg text-gray-600 mb-8">
+            Lo siento, la página que buscas no existe o ha sido movida.
+          </p>
+        </div>
+        
+        <div class="space-y-4">
+          <a 
+            href={`${base}`}
+            class="inline-flex items-center gap-2 px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 font-medium"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            Volver al inicio
+          </a>
+          
+          <div class="text-sm text-gray-500">
+            <p>¿Necesitas ayuda? <a href={`${base}contacto/`} class="text-primary-600 hover:text-primary-700">Contáctame</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <Footer />
+</Base>
