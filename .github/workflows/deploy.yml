@@ -21,15 +21,13 @@ jobs:
         working-directory: web-revolut
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run build
+          cache: npm
+          cache-dependency-path: web-revolut/package-lock.json
+      - run: npm ci || npm i
+      - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: web-revolut/dist
